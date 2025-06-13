@@ -1,0 +1,31 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int[] a={100,200,300,400,500,600};
+        System.out.print("Enter your key:");
+        int key=sc.nextInt();
+        int lb=0;
+        int rb=a.length-1;
+        boolean found=false;
+        while(lb<=rb){
+            int mid=lb+(rb-lb)/2;
+            if(a[mid]==key){
+                System.out.println("Found at index:"+mid);
+                found=true;
+                break;
+            }
+        
+       else if(a[mid]<key){
+           lb=mid+1;
+       } 
+       else {
+           rb=mid-1;
+       
+       }
+        } 
+        if(! found){
+            System.out.println("Element not found: ");
+        }
+    }
+}
