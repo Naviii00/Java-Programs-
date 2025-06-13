@@ -1,0 +1,64 @@
+abstract class BankAccount {
+    private String AccountHolder;
+    //int accountNumber;
+   private double Balance;
+    
+    public BankAccount(String AccountHolder, double Balance){
+        this.AccountHolder=AccountHolder;
+       //this.accountNumber=accountNumber;
+        this.Balance=Balance;
+    }
+    public abstract void displayDetails();
+    public String getAccountHolder(){
+        return AccountHolder;
+    }
+    public void setAccountHolder(String AccountHolder){
+        this.AccountHolder=AccountHolder;
+    }
+    public double getBalance(){
+        return Balance;
+    }
+    public void setBalance(double Balance){
+        this.Balance=Balance;
+    }
+    //POLYMORPHISM
+    public void deposit(double amount){
+        if(amount>0){
+            Balance+=amount;
+            System.out.println("Deposited amount:"+amount);
+        }
+        else{
+            System.out.println("Deposit properly");
+        }
+    }
+    
+    public void withdraw(double amount){
+        if(amount>0 && amount<=Balance){
+            Balance-=amount;
+            System.out.println("withdraw amount:"+ amount);
+        }
+            else{
+                System.out.println("Invalid amount");
+            }
+    }
+}  
+    class savingsAccount extends BankAccount{
+        public savingsAccount(String AccountHolder,double Balance){
+            super(AccountHolder,Balance);
+        }
+        @Override
+        public void displayDetails(){
+            System.out.println("Account Holder Name:"+ getAccountHolder());
+            System.out.println("Account Balance"+ getBalance());
+        }
+    }
+    public class Main{
+        public static void main(String[] args){
+            BankAccount savings = new savingsAccount ("Navish",4000.00);
+            savings.displayDetails();
+            
+            savings.deposit(4566.25);
+            savings.withdraw(5748.00);
+            savings.displayDetails();
+        }
+    }
